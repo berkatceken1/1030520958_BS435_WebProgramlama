@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  background-color: #999999; /* Sayfa arka plan rengi */
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: black;
+}
+
+
+  button {
+  padding: 10px 15px;
+  margin-top: 10px;
+  cursor: pointer;
+  background-color: #3498db;
+  color: #fff;
+  border:none;
+}   
+
+
+p {
+  color: #000000;
+}
+
+
+
