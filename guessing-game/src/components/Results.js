@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Results = ({ isCorrect }) => {
+const Results = ({ message }) => {
   return (
-    <div>
-      {isCorrect === true ? <p>Tebrikler, kazandınız!</p> : isCorrect === false ? <p>Kaybettiniz</p> : null}
+    <div className="Results">
+      <p>{message}</p>
     </div>
   );
 };
