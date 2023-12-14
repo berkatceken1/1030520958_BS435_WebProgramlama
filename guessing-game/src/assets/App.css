@@ -1,28 +1,66 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2; /* Sayfa arka plan rengi */
+}
+
 .App {
   text-align: center;
-  font-family: Arial, sans-serif;
-  background-color: #999999; /* Sayfa arka plan rengi */
+  padding: 20px;
+  background-color: #ffffff; /* Sayfa içeriği arka plan rengi */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 600px;
 }
 
 h1 {
   margin-bottom: 20px;
-  color: black;
+  color: #3498db;
 }
 
+div {
+  margin-bottom: 20px;
+}
 
-  button {
+Link {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #3498db;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+Link:hover {
+  color: #1d5cb2;
+}
+
+Routes {
+  margin-top: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.game-button {
   padding: 10px 15px;
-  margin-top: 10px;
+  margin: 10px;
   cursor: pointer;
   background-color: #3498db;
   color: #fff;
-  border:none;
-}   
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  text-decoration: none;
+}
 
+.game-button:hover {
+  background-color: #1d5cb2;
+}
 
 p {
   color: #000000;
 }
-
-
-
