@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
-import Game1 from './Game1';
-import Game2 from './Game2';
+import Game1 from './game1/Game1';
+import Game2 from './game2/Game2';
 import '../assets/App.css';
 
 const App = () => {

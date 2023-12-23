@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import GuessForm from './GuessForm';
 import Results from './Results';
-import '../assets/Game1.css';
+import '../../assets/Game1.css';
 
 const Game1 = () => {
   const [minNumber, setMinNumber] = useState();
