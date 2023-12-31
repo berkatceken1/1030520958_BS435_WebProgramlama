@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../../assets/Game2.css';
 
 const Game2 = () => {
   const [targetNumber, setTargetNumber] = useState(0); // Hedef sayı
@@ -9,16 +10,22 @@ const Game2 = () => {
   const [maxAttempts, setMaxAttempts] = useState(3); // Maksimum deneme hakkı
   const [isNewGame, setIsNewGame] = useState(true); // Yeni oyun başladığını belirtme
 
+  const [isInputDisabled, setIsInputDisabled] = useState(false);
+
   // Hedef sayıyı ve başlangıç sayılarını rastgele oluşturan fonksiyon
   const generateNumbers = () => {
     const randomTarget = Math.floor(Math.random() * 100) + 1; // 1 ile 100 arasında rastgele hedef sayı
-    const randomStartNumbers = Array.from({ length: 4 }, () => Math.floor(Math.random() * 10) + 1); // 4 rastgele başlangıç sayısı
+    const randomStartNumbers = Array.from({ length: 4 }, () =>
+      Math.floor(Math.random() * 10) + 1
+    ); // 4 rastgele başlangıç sayısı
     setTargetNumber(randomTarget);
     setStartingNumbers(randomStartNumbers);
     setUserExpression('');
     setMessage('');
     setIsWin(false);
     setIsNewGame(false); // Yeni oyun başladığını işaretleyin
+    setMaxAttempts(3); // Yeni oyun başladığında deneme hakkını sıfırla
+    setIsInputDisabled(false); // Yeni oyun başladığında ifade girmeyi etkinleştir
   };
 
   // Kullanıcının ifadesini değerlendiren fonksiyon
@@ -28,6 +35,7 @@ const Game2 = () => {
       if (result === targetNumber) {
         setIsWin(true);
         setMessage('Tebrikler, doğru ifadeyi buldunuz.');
+        setIsInputDisabled(true); // Kazanıldığında ifade girmeyi devre dışı bırak
       } else {
         setMessage('Üzgünüm, hedefe ulaşamadınız.');
       }
@@ -39,8 +47,7 @@ const Game2 = () => {
   // Yeni bir oyun başlatan fonksiyon
   const startNewGame = () => {
     generateNumbers();
-    setMaxAttempts(3); // Yeni oyun başladığında deneme hakkını sıfırla
-    setIsNewGame(true); // Yeni oyun başladı
+    setIsInputDisabled(false); // Yeni oyun başladığında ifade girmeyi etkinleştir
   };
 
   // Kullanıcının tahmin hakkını değerlendiren fonksiyon
@@ -52,6 +59,7 @@ const Game2 = () => {
       setMaxAttempts(maxAttempts - 1);
       evaluateExpression();
       setMessage('Deneme hakkınız bitti. Oyunu kaybettiniz.');
+      setIsInputDisabled(true); // Kaybedildiğinde ifade girmeyi devre dışı bırak
     }
   };
 
@@ -62,7 +70,7 @@ const Game2 = () => {
         <>
           <button onClick={generateNumbers}>Oyuna Başla</button>
           <label>
-            Deneme Hakkı: 
+            Deneme Hakkı:
             <input
               type="number"
               value={maxAttempts}
@@ -80,11 +88,15 @@ const Game2 = () => {
             type="text"
             value={userExpression}
             onChange={(e) => setUserExpression(e.target.value)}
-            disabled={maxAttempts === 0}
+            disabled={maxAttempts === 0 || isInputDisabled}
           />
-          <button onClick={handleAttempt} disabled={maxAttempts === 0}>Tahmin Et</button>
+          <button onClick={handleAttempt} disabled={maxAttempts === 0 || isInputDisabled}>
+            Tahmin Et
+          </button>
           <p>{message}</p>
-          {(isWin || maxAttempts === 0) && <button onClick={startNewGame}>Yeni Oyun</button>}
+          {(isWin || maxAttempts === 0) && (
+            <button onClick={startNewGame}>Yeni Oyun</button>
+          )}
         </>
       )}
     </div>
